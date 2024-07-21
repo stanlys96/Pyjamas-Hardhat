@@ -7,6 +7,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract PyjamasNFT is Ownable, ERC721 {
   string private baseURI;
   uint256 public maxSupply = 9998;
+  uint256 private counter = 0;
 
   constructor(string memory _name, string memory _symbol, string memory _baseURI) ERC721(_name, _symbol) {
     setBaseURI(_baseURI);
@@ -21,6 +22,7 @@ contract PyjamasNFT is Ownable, ERC721 {
   }
 
   function mint() public payable {
-    _safeMint(msg.sender, 1);
+    _safeMint(msg.sender, counter);
+    counter++;
   }
 }
